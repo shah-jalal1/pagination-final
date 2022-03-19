@@ -32,7 +32,7 @@ const HomePage: React.FC = () => {
     const [localPage, setLocalPage] = useState<number>(1);
     const [totalData, setTotalData] = useState<number>(0);
     const [posts, setPosts] = useState<InitPost[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const rowsPerPage = 20;
   
     useEffect(() => {
@@ -49,14 +49,14 @@ const HomePage: React.FC = () => {
   
     const getPosts = async () => {
       try {
-        setLoading(true);
+        setIsLoading(true);
         const data = await getAllData(PageNum);
         const _posts = [...posts, ...data.hits];
         setPosts(_posts);
         setTotalData(_posts.length);
-        setLoading(false);
+        setIsLoading(false);
       } catch (e) {
-        setLoading(false);
+        setIsLoading(false);
         console.log(e);
       }
     };
@@ -72,7 +72,7 @@ const HomePage: React.FC = () => {
     return (
       <Container data-testid="homePage">
         <h3 style={{ textAlign: "center" }} data-testid="postText">Post Table</h3>
-        {loading ? (
+        {isLoading ? (
           <Box style={{ textAlign: "center" }} data-testid="loading">
             <CircularProgress size={25} />
             <div data-testid="loadingText">Loading new Post Data...</div>
