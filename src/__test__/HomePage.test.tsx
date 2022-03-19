@@ -17,9 +17,15 @@ describe("Home", ()=> {
         expect(element).toBeInTheDocument();
     })
 
+    test("loading text", ()=> {
+      render(<HomePage />)
+      const element = screen.getByTestId("loadingText");
+      expect(element).toBeInTheDocument();
+  })
+
     test("text testing", ()=> {
         render(<HomePage />)
-        const element = screen.getByTestId("text");
+        const element = screen.getByTestId("postText");
         expect(element).toBeInTheDocument();
     })
 
