@@ -73,7 +73,7 @@ const HomePage: React.FC = () => {
       <Container data-testid="homePage">
         <h3 style={{ textAlign: "center" }}>Post Table</h3>
         {loading ? (
-          <Box style={{ textAlign: "center" }}>
+          <Box style={{ textAlign: "center" }} data-testid="loading">
             <CircularProgress size={25} />
             Loading new Post Data...
           </Box>

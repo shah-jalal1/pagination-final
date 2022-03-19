@@ -4,12 +4,18 @@ import HomePage from "../components/HomePage";
 import { getAllData } from './../AllApi/dataApi';
 
 describe("Home", ()=> {
-    
+
     test("api data", async () => {
         return await getAllData(0).then((data) => {
           expect(data).toBeDefined();
         });
       });
+
+      test("is loading working", ()=> {
+        render(<HomePage />)
+        const element = screen.getByTestId("loading");
+        expect(element).toBeInTheDocument();
+    })
 
     test("Home componenet", ()=> {
         render(<HomePage />)
