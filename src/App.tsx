@@ -11,7 +11,7 @@ import PostDetails from './components/PostDetails';
 
 function App() {
   return (
-    <div>
+    <div data-testid="app">
       <BrowserRouter>
           <Switch>
           <Route exact path="/" component={HomePage} />
