@@ -44,10 +44,10 @@ const HomePage: React.FC = () => {
     }, []);
   
     useEffect(() => {
-      getPosts();
+      getAllPost();
     }, [PageNum]);
   
-    const getPosts = async () => {
+    const getAllPost = async () => {
       try {
         setIsLoading(true);
         const data = await getAllData(PageNum);
@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
       setLocalPage(newPage);
     };
   
-    const handleDetails = (post: InitPost) => {
+    const handlePagDetails = (post: InitPost) => {
       history.push("/post-details", post);
     };
   
@@ -102,7 +102,7 @@ const HomePage: React.FC = () => {
                   .map((row) => (
                     <TableRow
                       key={row.title}
-                      onClick={() => handleDetails(row)}
+                      onClick={() => handlePagDetails(row)}
                       style={{ cursor: "pointer" }}
                     >
                       {columns.map((column) => (
