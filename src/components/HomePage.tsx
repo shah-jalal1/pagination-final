@@ -25,7 +25,7 @@ export interface InitPost {
     author: string
 }
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
     const history = useHistory();
   
     const [PageNum, setPageNum] = useState<number>(0);
@@ -70,7 +70,7 @@ const Home: React.FC = () => {
     };
   
     return (
-      <Container data-testid="home">
+      <Container data-testid="homePage">
         <h3 style={{ textAlign: "center" }}>Post Table</h3>
         {loading ? (
           <Box style={{ textAlign: "center" }}>
@@ -129,7 +129,7 @@ const Home: React.FC = () => {
     );
   };
   
-  export default Home;
+  export default HomePage;
   
 
 // const Home: React.FC = () => {
