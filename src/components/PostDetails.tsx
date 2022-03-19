@@ -8,9 +8,9 @@ const PostDetails = () => {
 
     const post = state as InitPost;
     return (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center" }} data-testid="detailsPost">
             <h3>Details</h3>
-            <div data-testid="detailsPost">
+            <div >
                 <pre>
                     {
                         JSON.stringify(post, null, 2)
