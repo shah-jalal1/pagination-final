@@ -9,7 +9,7 @@ const PostDetails = () => {
     const post = state as InitPost;
     return (
         <div style={{ textAlign: "center" }} data-testid="detailsPost">
-            <h3>Details</h3>
+            <h3 >Details</h3>
             <div >
                 <pre>
                     {
