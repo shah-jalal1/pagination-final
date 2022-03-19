@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
             Loading new Post Data...
           </Box>
         ) : (
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} >
             <Table style={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>

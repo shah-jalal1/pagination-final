@@ -23,6 +23,7 @@ describe("Home", ()=> {
         expect(element).toBeInTheDocument();
     })
 
+
     test("Home componenet", ()=> {
         render(<HomePage />)
         const element = screen.getByTestId("homePage");
