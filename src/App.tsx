@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
           <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/post-details" component={PostDetails} />
+          <Route exact path="/post-details/:id" component={PostDetails} />
               <Route path="*" component={NoMatch} />
           </Switch>
       </BrowserRouter>

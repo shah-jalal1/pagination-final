@@ -14,14 +14,14 @@ describe("app", () => {
     });
 
     test("details page route test", () => {
-        const history = createMemoryHistory({initialEntries: ["/post-details"]});
+        const history = createMemoryHistory({initialEntries: ["/post-details/1"]});
         render(
             <Router history={history}>
                 <App/>
             </Router>
         );
 
-        expect(history.location.pathname).toBe("/post-details");
+        expect(history.location.pathname).toBe("/post-details/1");
     });
 
     test("home page route test", () => {

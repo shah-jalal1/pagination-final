@@ -19,14 +19,14 @@ describe("details componenet", () => {
   test('Render details component', async () => {
 
     const history = createMemoryHistory();
-    history.push("/post-details", {title: "", url: "", created_at: Date(), author: ""});
+    history.push("/post-details/1", {title: "", url: "", created_at: Date(), author: ""});
 
    render(
         <Router history={history}>
             {/* <Details/> */}
             <Switch>
                 <Route exact component={PostDetails}/>
-                <Route path="/post-details" render={() => <div>created</div>} />
+                <Route path="/post-details/1" render={() => <div>created</div>} />
             </Switch>
         </Router>
     );

@@ -65,8 +65,8 @@ const HomePage: React.FC = () => {
       setLocalPage(newPage);
     };
   
-    const handlePagDetails = (post: InitPost) => {
-      history.push("/post-details", post);
+    const handlePagDetails = (post: InitPost, i: number) => {
+      history.push("/post-details/" + i, post);
     };
   
     return (
@@ -99,10 +99,10 @@ const HomePage: React.FC = () => {
                     rowsPerPage * (localPage - 1),
                     rowsPerPage * (localPage - 1) + rowsPerPage
                   )
-                  .map((row) => (
+                  .map((row, i) => (
                     <TableRow
                       key={row.title}
-                      onClick={() => handlePagDetails(row)}
+                      onClick={() => handlePagDetails(row, i)}
                       style={{ cursor: "pointer" }}
                     >
                       {columns.map((column) => (
