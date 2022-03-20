@@ -1,28 +1,53 @@
 import React from "react";
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from './../App';
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
+import {MemoryRouter, Router} from "react-router-dom";
+import {createMemoryHistory} from "history";
 
 describe("app", () => {
-  test('Render app component', () => {
-    render(<App />);
-    const app = screen.getByTestId("app");
-    expect(app).toBeInTheDocument();
-  });
-
-  test("details page", () => {
-    const history = createMemoryHistory({ initialEntries: ["/post-details"] });
-    render(
-      <Router history={history}>
-        <App />
-      </Router>
-    );
-
-    expect(history.location.pathname).toBe("/post-details");
-  });
 
 
+    test('Render app component', () => {
+        render(<App/>);
+        const app = screen.getByTestId("app");
+        expect(app).toBeInTheDocument();
+    });
+
+    test("details page route test", () => {
+        const history = createMemoryHistory({initialEntries: ["/post-details"]});
+        render(
+            <Router history={history}>
+                <App/>
+            </Router>
+        );
+
+        expect(history.location.pathname).toBe("/post-details");
+    });
+
+    test("home page route test", () => {
+        const history = createMemoryHistory({initialEntries: ["/"]});
+        render(
+            <Router history={history}>
+                <App/>
+            </Router>
+        );
+
+        expect(history.location.pathname).toBe("/");
+    });
+
+
+    test("If Router No Match", () => {
+        const history = createMemoryHistory({
+            initialEntries: ["/route/no/match"],
+        });
+        render(
+            <Router history={history}>
+                <App />
+            </Router>
+        );
+
+        expect(history.location.pathname).toBe("/route/no/match");
+    });
 
 
 })

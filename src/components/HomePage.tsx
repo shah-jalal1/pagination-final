@@ -124,6 +124,7 @@ const HomePage: React.FC = () => {
           count={totalData / rowsPerPage}
           page={localPage}
           onChange={handlePageChange}
+          data-testid="pagination"
         />
       </Container>
     );
