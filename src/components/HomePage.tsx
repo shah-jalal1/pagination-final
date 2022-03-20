@@ -5,74 +5,77 @@ import { getAllData } from './../AllApi/dataApi';
 
 
 interface Column {
-    id: "title" | "url" | "created_at" | "author",
-    label: string,
-    minWidth?: number,
-    align?: "right"
+  id: "title" | "url" | "created_at" | "author",
+  label: string,
+  minWidth?: number,
+  align?: "right"
 }
 
 const columns: readonly Column[] = [
-    { id: "title", label: "Title", minWidth: 170 },
-    { id: "url", label: "URL", minWidth: 150 },
-    { id: "created_at", label: "Created At", minWidth: 100 },
-    { id: "author", label: "Author", minWidth: 100 },
+  { id: "title", label: "Title", minWidth: 170 },
+  { id: "url", label: "URL", minWidth: 150 },
+  { id: "created_at", label: "Created At", minWidth: 100 },
+  { id: "author", label: "Author", minWidth: 100 },
 ];
 
 export interface InitPost {
-    title: string,
-    url: string,
-    created_at: Date,
-    author: string
+  title: string,
+  url: string,
+  created_at: Date,
+  author: string
 }
 
 const HomePage: React.FC = () => {
-    const history = useHistory();
-  
-    const [PageNum, setPageNum] = useState<number>(0);
-    const [localPage, setLocalPage] = useState<number>(1);
-    const [totalData, setTotalData] = useState<number>(0);
-    const [posts, setPosts] = useState<InitPost[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const rowsPerPage = 20;
-  
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setPageNum((_page) => _page + 1);
-      }, 10000);
-  
-      return () => clearInterval(interval);
-    }, []);
-  
-    useEffect(() => {
-      getAllPost();
-    }, [PageNum]);
-  
-    const getAllPost = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getAllData(PageNum);
-        const _posts = [...posts, ...data.hits];
-        setPosts(_posts);
-        setTotalData(_posts.length);
-        setIsLoading(false);
-      } catch (e) {
-        setIsLoading(false);
-        console.log(e);
-      }
-    };
-  
-    const handlePageChange = (e: unknown, newPage: number) => {
-      setLocalPage(newPage);
-    };
-  
-    const handlePagDetails = (post: InitPost, i: number) => {
-      history.push("/post-details/" + i, post);
-    };
-  
-    return (
-      <Container data-testid="homePage">
-        <h3 style={{ textAlign: "center" }} data-testid="postText">Post Table</h3>
-        {isLoading ? (
+  const history = useHistory();
+
+  const [PageNum, setPageNum] = useState<number>(0);
+  const [localPage, setLocalPage] = useState<number>(1);
+  const [totalData, setTotalData] = useState<number>(0);
+  const [posts, setPosts] = useState<InitPost[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const rowsPerPage = 20;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPageNum((_page) => _page + 1);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    getAllPost();
+  }, [PageNum]);
+
+  const getAllPost = async () => {
+    try {
+      setIsLoading(true);
+      const data = await getAllData(PageNum);
+      const _posts = [...posts, ...data.hits];
+      setPosts(_posts);
+      setTotalData(_posts.length);
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+      console.log(e);
+    }
+  };
+
+  const handlePageChange = (e: unknown, newPage: number) => {
+    setLocalPage(newPage);
+  };
+
+  const handlePagDetails = (post: InitPost, i: number) => {
+    history.push("/post-details/" + i, post);
+  };
+
+  return (
+    <Container data-testid="homePage">
+      <h3 style={{ textAlign: "center" }} data-testid="postText">Post Table</h3>
+      {
+        // isLoading ? 
+        (totalData < 1) ?
+        (
           <Box style={{ textAlign: "center" }} data-testid="loading">
             <CircularProgress size={25} />
             <div data-testid="loadingText">Loading new Post Data...</div>
@@ -120,18 +123,18 @@ const HomePage: React.FC = () => {
             </Table>
           </TableContainer>
         )}
-        <Pagination
-          count={totalData / rowsPerPage}
-          page={localPage}
-          onChange={handlePageChange}
-          data-testid="pagination"
-        />
-      </Container>
-    );
-  };
-  
-  export default HomePage;
-  
+      <Pagination
+        count={totalData / rowsPerPage}
+        page={localPage}
+        onChange={handlePageChange}
+        data-testid="pagination"
+      />
+    </Container>
+  );
+};
+
+export default HomePage;
+
 
 // const Home: React.FC = () => {
 
