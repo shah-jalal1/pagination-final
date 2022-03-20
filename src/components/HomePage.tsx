@@ -11,7 +11,7 @@ interface Column {
   align?: "right"
 }
 
-const columns: readonly Column[] = [
+const tableColumns: readonly Column[] = [
   { id: "title", label: "Title", minWidth: 170 },
   { id: "url", label: "URL", minWidth: 150 },
   { id: "created_at", label: "Created At", minWidth: 100 },
@@ -85,7 +85,7 @@ const HomePage: React.FC = () => {
             <Table style={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  {columns.map((column, i) => (
+                  {tableColumns.map((column, i) => (
                     <TableCell
                       key={i}
                       align={column.align}
@@ -108,7 +108,7 @@ const HomePage: React.FC = () => {
                       onClick={() => handlePagDetails(row, i)}
                       style={{ cursor: "pointer" }}
                     >
-                      {columns.map((column) => (
+                      {tableColumns.map((column) => (
                         <TableCell
                           key={column.id}
                           align={column.align}

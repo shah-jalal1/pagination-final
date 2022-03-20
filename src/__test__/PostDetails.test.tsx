@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from "history";
 
 describe("details componenet", () => {
-  test("post detailas", () => {
+  test("post detailas component", () => {
     const history = createMemoryHistory();
     render(
       <Router history={history}>
@@ -16,22 +16,28 @@ describe("details componenet", () => {
     expect(linkElement).toBeInTheDocument();
   });
 
-  test('Render details component', async () => {
+  test('Render Post Details by Data', async () => {
 
     const history = createMemoryHistory();
-    history.push("/post-details/1", {title: "", url: "", created_at: Date(), author: ""});
+    history.push("/post-details/1", {
+      title: "Builders",
+      url: "https://fast.com/",
+      created_at: Date(),
+      author: "zamil"
+    });
 
-   render(
-        <Router history={history}>
-            {/* <Details/> */}
-            <Switch>
-                <Route exact component={PostDetails}/>
-                <Route path="/post-details/1" render={() => <div>created</div>} />
-            </Switch>
-        </Router>
+    render(
+      <Router history={history}>
+        {/* <Details/> */}
+        <Switch>
+          <Route exact component={PostDetails} />
+          <Route path="/post-details/1" render={() => <div>created</div>} />
+        </Switch>
+      </Router>
     );
     const details = screen.getByTestId("detailsPost");
     expect(details).toBeInTheDocument();
+
   });
 
 });
